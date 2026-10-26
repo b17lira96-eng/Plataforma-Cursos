@@ -1,0 +1,11 @@
+
+bin/
+obj/
+publish/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+.git/
+.vs/
+.vscode/
