@@ -271,3 +271,156 @@ Os detalhes estão registrados no arquivo:
 Os cursos utilizados no catálogo são fictícios e destinados à demonstração das funcionalidades da aplicação.
 
 O projeto foi desenvolvido para fins de avaliação técnica e demonstração de conhecimentos em desenvolvimento web Full Stack.
+
+## Estrutura de pastas
+
+O projeto está organizado em um único repositório, contendo o Front-End, o Back-End e a documentação técnica.
+
+```text
+Plataforma-Cursos/
+├── CursosApi/
+│   ├── Controllers/
+│   ├── Data/
+│   ├── Migrations/
+│   ├── Models/
+│   ├── Dockerfile
+│   ├── .dockerignore
+│   ├── Program.cs
+│   ├── CursosApi.csproj
+│   └── appsettings.json
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── types/
+│   │   ├── App.tsx
+│   │   ├── App.css
+│   │   └── main.tsx
+│   ├── package.json
+│   └── package-lock.json
+├── .gitignore
+├── README.md
+└── USO_DE_IA.md
+```
+
+### Responsabilidades principais
+
+- `CursosApi/Controllers`: endpoints HTTP da API.
+- `CursosApi/Models`: modelo de dados dos cursos.
+- `CursosApi/Data`: contexto do Entity Framework Core e inicialização dos dados.
+- `CursosApi/Migrations`: histórico de alterações da estrutura do banco.
+- `frontend/src/components`: componentes da interface.
+- `frontend/src/services`: configuração da comunicação com a API.
+- `frontend/src/types`: definições de tipos utilizadas no Front-End.
+- `frontend/public` e `frontend/src/assets`: recursos visuais da aplicação.
+
+## Configuração e inicialização do banco de dados
+
+O Back-End utiliza SQLite, um banco de dados relacional de código aberto.
+
+A configuração da conexão está definida no arquivo `CursosApi/appsettings.json`, utilizando a string:
+
+```text
+Data Source=cursos.db
+```
+
+O projeto utiliza Entity Framework Core e migrations para controlar a estrutura do banco.
+
+Durante a inicialização da aplicação, o componente `DbInitializer` aplica as migrations pendentes e cadastra os seis cursos fictícios quando a tabela de cursos está vazia.
+
+Assim, não é necessário incluir um arquivo SQLite preenchido no repositório para executar a aplicação localmente.
+
+O banco é gerado e inicializado durante a execução do Back-End, desde que o ambiente tenha permissão para criar e gravar o arquivo.
+
+## Estratégia de responsividade
+
+A interface foi desenvolvida para permitir a navegação em diferentes tamanhos de tela.
+
+A implementação utiliza estilos CSS responsivos para adaptar a organização dos elementos, incluindo:
+
+- Distribuição dos cartões de cursos.
+- Organização dos campos de pesquisa e filtros.
+- Dimensionamento dos elementos da interface.
+- Apresentação do modal de detalhes.
+- Adequação dos espaçamentos e da navegação.
+
+O comportamento foi verificado em resoluções representativas de computadores, tablets e dispositivos móveis.
+
+## Decisões de acessibilidade
+
+Durante o desenvolvimento, foram considerados recursos para melhorar a utilização da interface por diferentes usuários.
+
+Entre as decisões implementadas estão:
+
+- Identificação textual dos campos de pesquisa e filtros.
+- Utilização de controles interativos apropriados.
+- Navegação por teclado no modal de detalhes.
+- Possibilidade de fechar o modal utilizando a tecla Escape.
+- Controle de foco durante a utilização do modal.
+- Apresentação de mensagens para carregamento, ausência de resultados e falhas de comunicação.
+
+Esses recursos representam medidas de acessibilidade implementadas no projeto, não uma certificação de conformidade integral com as diretrizes WCAG.
+
+## Processo de publicação
+
+A aplicação foi publicada utilizando serviços com modalidades gratuitas, separando o Front-End e o Back-End.
+
+### Back-End — Render
+
+O Back-End ASP.NET Core foi publicado no Render utilizando um serviço web configurado para construção por Docker.
+
+O repositório contém um `Dockerfile` na pasta `CursosApi`, responsável pela compilação e execução da API.
+
+A aplicação utiliza SQLite e inicializa os dados necessários durante a execução.
+
+Endpoint público de consulta:
+
+https://plataforma-cursos-l7u4.onrender.com/api/Cursos
+
+### Front-End — Cloudflare Pages
+
+O Front-End foi publicado no Cloudflare Pages, com integração ao repositório GitHub.
+
+Configurações utilizadas:
+
+- Framework: React (Vite).
+- Diretório raiz: `frontend`.
+- Comando de construção: `npm run build`.
+- Diretório de saída: `dist`.
+- Branch de produção: `main`.
+
+A variável de ambiente `VITE_API_URL` foi configurada para apontar para o endereço público da API no Render:
+
+```text
+https://plataforma-cursos-l7u4.onrender.com/api
+```
+
+Endereço público da aplicação:
+
+https://plataforma-cursos-4xd.pages.dev
+
+As atualizações enviadas à branch principal podem acionar novas publicações conforme a configuração de cada serviço.
+
+## Limitações conhecidas e escopo
+
+- Os cursos e suas informações são fictícios e utilizados exclusivamente para demonstração.
+- Não existe integração com uma instalação real do Moodle, pois essa funcionalidade foi apresentada como diferencial opcional no desafio.
+- A aplicação não possui autenticação nem área do aluno funcional.
+- O gerenciamento de matrículas não faz parte do escopo implementado.
+- O projeto prioriza a consulta e a apresentação do catálogo, conforme as funcionalidades obrigatórias.
+- O SQLite utilizado no ambiente de hospedagem pode não oferecer persistência permanente quando o serviço é reconstruído ou reiniciado sem armazenamento persistente. Por esse motivo, o catálogo demonstrativo é inicializado automaticamente quando o banco está vazio.
+- Serviços de hospedagem gratuitos podem apresentar períodos de inatividade, inicialização mais lenta ou indisponibilidade temporária.
+- A aplicação utiliza o Figma como referência visual, mas pode apresentar diferenças de espaçamento, dimensões e comportamento responsivo em relação ao protótipo. Essas adaptações foram realizadas para viabilizar a implementação e o funcionamento em diferentes tamanhos de tela.
+
+## Arquivos de publicação
+
+Os principais arquivos e configurações relacionados à publicação são:
+
+- `CursosApi/Dockerfile`: construção e execução do Back-End.
+- `CursosApi/.dockerignore`: exclusão de arquivos desnecessários da imagem Docker.
+- `CursosApi/appsettings.json`: configurações gerais da API.
+- `CursosApi/Migrations/`: estrutura e evolução do banco de dados.
+- `frontend/package.json`: scripts e dependências do Front-End.
+- `frontend/package
