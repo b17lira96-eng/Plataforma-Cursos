@@ -18,12 +18,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Endereços permitidos para o Front-End em produção.
-// Exemplo de configuração na hospedagem:
-// Frontend__Url=https://seu-frontend.exemplo.com
-var frontendUrl = builder.Configuration["Frontend:Url"]?
-    .TrimEnd('/');
-
 // CORS - acesso do Front-End
 builder.Services.AddCors(options =>
 {
@@ -40,45 +34,30 @@ builder.Services.AddCors(options =>
                     return false;
                 }
 
-                // Front-End publicado
-                if (!string.IsNullOrWhiteSpace(frontendUrl)
-                    && string.Equals(
-                        origin.TrimEnd('/'),
-                        frontendUrl,
-                        StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-
-                // Front-End local e na rede de desenvolvimento
-                return uri.Scheme == "http"
+                // Permite o Vite local e na rede de desenvolvimento.
+                bool ambienteLocal =
+                    uri.Scheme == "http"
                     && uri.Port == 5173
                     && (
                         uri.Host == "localhost"
                         || uri.Host == "127.0.0.1"
                         || uri.Host == "192.168.40.61"
                     );
+
+                // Permite o Front-End publicado no Cloudflare Pages.
+                bool ambienteProducao =
+                    uri.Scheme == "https"
+                    && uri.Host == "plataforma-cursos-4xd.pages.dev";
+
+                return ambienteLocal || ambienteProducao;
             })
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
 
-// Porta configurável para hospedagem.
-// Localmente, mantém a porta 5035.
-var port = Environment.GetEnvironmentVariable("PORT");
-
-if (!string.IsNullOrWhiteSpace(port)
-    && int.TryParse(port, out var portNumber)
-    && portNumber > 0
-    && portNumber <= 65535)
-{
-    builder.WebHost.UseUrls($"http://0.0.0.0:{portNumber}");
-}
-else
-{
-    builder.WebHost.UseUrls("http://0.0.0.0:5035");
-}
+// Permitir conexões pela rede local
+builder.WebHost.UseUrls("http://0.0.0.0:5035");
 
 var app = builder.Build();
 
