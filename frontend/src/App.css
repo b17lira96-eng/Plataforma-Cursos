@@ -1,0 +1,1652 @@
+/* =========================================================
+   1. CONFIGURAÇÕES GERAIS
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+.container {
+  width: 84%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   2. CABEÇALHO E NAVEGAÇÃO
+   ========================================================= */
+
+.header {
+  position: relative;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.header-content {
+  position: relative;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  color: #c90000;
+  font-size: 23px;
+  font-weight: 800;
+  font-style: italic;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+nav a {
+  color: #111;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #c90000;
+}
+
+.area-aluno {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+
+/* =========================================================
+   3. MENU HAMBÚRGUER
+   ========================================================= */
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background-color: #b50000;
+  border-radius: 3px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.menu-toggle.ativo span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.ativo span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.ativo span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.menu-toggle:focus-visible {
+  outline: 3px solid #b50000;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   4. BANNER PRINCIPAL
+   ========================================================= */
+
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(140, 0, 0, 0.88),
+      rgba(185, 0, 0, 0.78)
+    ),
+    url("/images/hero-image.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  max-width: 620px;
+  line-height: 1.05;
+  margin-bottom: 25px;
+}
+
+.hero-content p {
+  font-size: 19px;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   5. BOTÕES GERAIS
+   ========================================================= */
+
+.btn {
+  display: inline-block;
+  margin-top: 18px;
+  background: #fff;
+  color: #111;
+  padding: 14px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #f1f1f1;
+}
+
+/* =========================================================
+   6. SEÇÕES
+   ========================================================= */
+
+.cursos,
+.sobre {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.cursos h2,
+.sobre h2 {
+  font-size: 40px;
+}
+
+.cursos,
+.cursos .container {
+  min-width: 0;
+}
+
+/* =========================================================
+   7. PESQUISA E FILTROS
+   ========================================================= */
+
+.filtros-cursos {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: end;
+  margin: 30px 0;
+}
+
+.filtros-cursos > * {
+  min-width: 0;
+}
+
+.filtros-cursos .campo-pesquisa {
+  grid-column: auto;
+}
+
+.campo-pesquisa,
+.campo-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.campo-pesquisa label,
+.campo-filtro label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.campo-pesquisa input,
+.campo-filtro select {
+  width: 100%;
+  max-width: 100%;
+  min-height: 60px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 16px;
+}
+
+.campo-pesquisa input:focus-visible,
+.campo-filtro select:focus-visible {
+  outline: 3px solid #c90000;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   8. ORDENAÇÃO E LIMPEZA DOS FILTROS
+   ========================================================= */
+
+.ordenacao-cursos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.ordenacao-cursos > * {
+  min-width: 0;
+}
+
+.ordenacao-cursos p {
+  margin: 0;
+}
+
+.campo-ordenacao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.campo-ordenacao label {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.campo-ordenacao select {
+  min-width: 220px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  font-size: 16px;
+}
+
+.campo-ordenacao select:focus-visible {
+  outline: 3px solid #c90000;
+  outline-offset: 2px;
+}
+
+.limpar-filtros {
+  padding: 12px 20px;
+  min-height: 44px;
+  border: 1px solid #c90000;
+  border-radius: 8px;
+  background: #fff;
+  color: #b90000;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.limpar-filtros:hover:not(:disabled) {
+  background: #b90000;
+  color: #fff;
+}
+
+.limpar-filtros:focus-visible {
+  outline: 3px solid #b90000;
+  outline-offset: 3px;
+}
+
+.limpar-filtros:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   9. GRID DOS CURSOS
+   ========================================================= */
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+}
+
+/* =========================================================
+   10. CARDS DOS CURSOS
+   ========================================================= */
+
+.curso-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    160deg,
+    #b80000,
+    #850000
+  );
+
+  color: #fff;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  will-change: auto;
+}
+
+.curso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.curso-card:focus-visible,
+.curso-card button:focus-visible,
+.curso-card .curso-botao:focus-visible {
+  outline: 3px solid #ffcc66;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   11. IMAGENS DOS CURSOS
+   ========================================================= */
+
+.curso-imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.curso-imagem img,
+.curso-card > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.curso-card > img {
+  flex-shrink: 0;
+}
+
+.curso-card img {
+  display: block;
+  max-width: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* =========================================================
+   12. CONTEÚDO DOS CARDS
+   ========================================================= */
+
+.curso-card-conteudo,
+.curso-conteudo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+  padding: 24px;
+}
+
+.curso-card-conteudo {
+  min-width: 0;
+  gap: 14px;
+  padding: 28px;
+}
+
+.curso-categoria {
+  align-self: flex-start;
+  background: #ffd39e;
+  color: #111;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.curso-card .curso-categoria {
+  margin-bottom: 2px;
+}
+
+.curso-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.curso-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.curso-carga {
+  display: block;
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   13. MODALIDADE E CARGA HORÁRIA
+   ========================================================= */
+
+.curso-metadados {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 26px;
+}
+
+.curso-modalidade,
+.curso-card .curso-carga {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.curso-modalidade svg,
+.curso-carga svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   14. BOTÃO VISUAL "VER DETALHES"
+   ========================================================= */
+
+.curso-ver-detalhes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px 18px;
+  background: #fff;
+  color: #a50000;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.curso-ver-detalhes span {
+  font-size: 20px;
+  transition: transform 0.25s ease;
+}
+
+.curso-card:hover .curso-ver-detalhes {
+  background: #f0f0f0;
+}
+
+.curso-card:hover .curso-ver-detalhes span {
+  transform: translateX(5px);
+}
+
+/* =========================================================
+   15. EFEITOS DE INTERAÇÃO DOS CARDS
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .curso-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .curso-card:hover img {
+    transform: scale(1.025);
+  }
+}
+
+.curso-card button,
+.curso-card .curso-botao {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .curso-card button:hover,
+  .curso-card .curso-botao:hover {
+    background-color: #f2f2f2;
+    color: #a50000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* =========================================================
+   16. MODAL - ESTRUTURA PRINCIPAL
+   ========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  border-radius: 14px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  scrollbar-width: thin;
+  scrollbar-color: #b9b9b9 transparent;
+}
+
+/* =========================================================
+   17. BOTÃO DE FECHAR MODAL
+   ========================================================= */
+
+.modal-fechar {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #111;
+  font-size: 25px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-fechar:hover {
+  background: #ddd;
+}
+
+/* =========================================================
+   18. CABEÇALHO DO MODAL
+   ========================================================= */
+
+.modal-categoria {
+  display: inline-block;
+  background: #ffd39e;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.modal-content h2 {
+  font-size: 36px;
+  line-height: 1.2;
+  margin: 24px 0 16px;
+  color: #111;
+}
+
+.modal-content h3 {
+  font-size: 24px;
+  margin: 28px 0 18px;
+}
+
+.modal-content p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.modal-content h2,
+.modal-content h3,
+.modal-content p,
+.modal-content li {
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   19. INFORMAÇÕES PRINCIPAIS DO MODAL
+   ========================================================= */
+
+.modal-informacoes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.modal-informacoes > div {
+  padding: 20px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  background: #f7f7f7;
+}
+
+.modal-informacoes strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.modal-informacoes p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* =========================================================
+   20. SEÇÕES DO MODAL
+   ========================================================= */
+
+.modal-secao {
+  margin-top: 32px;
+}
+
+.modal-secao h3 {
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   21. LISTA DE MÓDULOS
+   ========================================================= */
+
+.modal-lista-modulos {
+  list-style: none;
+  counter-reset: modulo;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-lista-modulos li {
+  counter-increment: modulo;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  background: #f8f8f8;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.modal-lista-modulos li::before {
+  content: counter(modulo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  background: #c90000;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* =========================================================
+   22. BOTÃO INFERIOR DO MODAL
+   ========================================================= */
+
+.modal-botao {
+  display: block;
+  width: 100%;
+  margin-top: 30px;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #b50000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.modal-botao:hover {
+  background: #8e0000;
+}
+
+.modal-fechar:focus-visible,
+.modal-botao:focus-visible {
+  outline: 3px solid #c90000;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   23. ACESSIBILIDADE DO MODAL
+   ========================================================= */
+
+.modal-content :is(
+  button,
+  a,
+  input,
+  select,
+  textarea
+):focus-visible {
+  outline: 3px solid #c90000;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   24. ANIMAÇÕES DO MODAL
+   ========================================================= */
+
+@keyframes modalOverlayEntrada {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalOverlaySaida {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalConteudoEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modalConteudoSaida {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+.modal-overlay.modal-entrando {
+  animation: modalOverlayEntrada 0.3s ease both;
+}
+
+.modal-entrando .modal-content {
+  animation: modalConteudoEntrada 0.3s ease-out both;
+}
+
+.modal-overlay.modal-saindo {
+  animation: modalOverlaySaida 0.3s ease both;
+}
+
+.modal-saindo .modal-content {
+  animation: modalConteudoSaida 0.3s ease-in both;
+}
+
+/* =========================================================
+   25. INTERAÇÕES DO MODAL
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .modal-fechar:hover {
+    background-color: #e5e5e5;
+    transform: rotate(90deg);
+  }
+
+  .modal-botao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* =========================================================
+   26. ÁREA DO ALUNO
+   ========================================================= */
+
+.area-aluno-secao {
+  padding: 90px 0;
+
+  background: linear-gradient(
+    135deg,
+    #f8f8f8 0%,
+    #f0f0f0 100%
+  );
+}
+
+.area-aluno-container {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 440px);
+  align-items: center;
+  gap: 64px;
+}
+
+.area-aluno-apresentacao {
+  min-width: 0;
+}
+
+.area-aluno-etiqueta {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #b50000;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.area-aluno-apresentacao h2 {
+  margin: 0 0 24px;
+  color: #151515;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+}
+
+.area-aluno-apresentacao p {
+  max-width: 500px;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   27. CARD DE LOGIN
+   ========================================================= */
+
+.area-aluno-card {
+  min-width: 0;
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.area-aluno-card h3 {
+  margin: 0 0 12px;
+  color: #171717;
+  font-size: 1.75rem;
+}
+
+.area-aluno-subtitulo {
+  margin: 0 0 28px;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   28. CAMPOS DO LOGIN
+   ========================================================= */
+
+.area-aluno-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.area-aluno-campo label {
+  color: #242424;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.area-aluno-campo input {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: 12px 14px;
+  color: #222;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.95rem;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.area-aluno-campo input:focus {
+  outline: none;
+  border-color: #b50000;
+  box-shadow: 0 0 0 3px rgba(181, 0, 0, 0.12);
+}
+
+/* =========================================================
+   29. CAMPO DE SENHA
+   ========================================================= */
+
+.area-aluno-senha {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.area-aluno-senha input {
+  padding-right: 90px;
+}
+
+.area-aluno-mostrar-senha {
+  position: absolute;
+  right: 10px;
+  padding: 8px;
+  color: #b50000;
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.area-aluno-mostrar-senha:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   30. BOTÃO ENTRAR
+   ========================================================= */
+
+.area-aluno-entrar {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 14px 20px;
+  color: #fff;
+  background: #b50000;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.area-aluno-entrar:hover {
+  background: #920000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(181, 0, 0, 0.2);
+}
+
+.area-aluno-entrar span {
+  transition: transform 0.25s ease;
+}
+
+.area-aluno-entrar:hover span {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   31. MENSAGENS E AVISOS DO LOGIN
+   ========================================================= */
+
+.area-aluno-mensagem {
+  margin-top: 18px;
+  padding: 12px 14px;
+  color: #333;
+  background: #f5f5f5;
+  border-left: 4px solid #b50000;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.area-aluno-aviso {
+  margin: 24px 0 0;
+  color: #777;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.area-aluno-mostrar-senha:focus-visible,
+.area-aluno-entrar:focus-visible {
+  outline: 3px solid #b50000;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   32. RESPONSIVIDADE - TABLETS ATÉ 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .cursos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .filtros-cursos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .ordenacao-cursos {
+    gap: 16px;
+  }
+
+  .modal-overlay {
+    padding: 20px;
+  }
+
+  .modal-content {
+    max-width: 720px;
+    max-height: calc(100dvh - 40px);
+    padding: 30px;
+  }
+
+  .modal-informacoes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .area-aluno-secao {
+    padding: 64px 0;
+  }
+
+  .area-aluno-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .area-aluno-card {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+/* =========================================================
+   33. RESPONSIVIDADE - FILTROS ENTRE 601px E 900px
+   ========================================================= */
+
+@media (max-width: 900px) and (min-width: 601px) {
+  .filtros-cursos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .filtros-cursos .campo-pesquisa {
+    grid-column: auto;
+  }
+}
+
+/* =========================================================
+   34. RESPONSIVIDADE - TABLETS E CELULARES ATÉ 768px
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .header .logo {
+    font-size: clamp(1.15rem, 4vw, 1.6rem);
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  /* Menu fechado */
+
+  .header .nav-principal {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 101;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+
+    background-color: #fff;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  /* Menu aberto */
+
+  .header .nav-principal.nav-aberta {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .header .nav-principal a {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    color: #222;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  .header .nav-principal a:hover {
+    background-color: #f5f5f5;
+    color: #b50000;
+  }
+
+  .header .nav-principal .area-aluno {
+    margin: 8px 0 0;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  /* Banner */
+
+  .hero {
+    min-height: 480px;
+    height: auto;
+    padding: 64px 0;
+    background-position: 65% center;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero .hero-content {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.15;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Filtros */
+
+  .filtros-cursos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  /* Ordenação */
+
+  .ordenacao-cursos {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .campo-ordenacao {
+    justify-content: space-between;
+  }
+
+  .campo-ordenacao select {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   35. RESPONSIVIDADE - CELULARES ATÉ 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+  /* Títulos */
+
+  .cursos h2,
+  .sobre h2 {
+    font-size: 30px;
+  }
+
+  /* Grid */
+
+  .cursos-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  /* Cards */
+
+  .curso-card-conteudo {
+    padding: 24px;
+  }
+
+  .curso-conteudo {
+    padding: 20px;
+  }
+
+  .curso-card h3 {
+    font-size: 21px;
+  }
+
+  .curso-metadados {
+    gap: 12px 20px;
+  }
+
+  .curso-modalidade,
+  .curso-card .curso-carga {
+    font-size: 13px;
+  }
+
+  .curso-ver-detalhes {
+    width: 100%;
+    padding: 13px;
+  }
+
+  /* Filtros */
+
+  .filtros-cursos {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .filtros-cursos .campo-pesquisa {
+    grid-column: auto;
+  }
+
+  .campo-pesquisa,
+  .campo-filtro,
+  .campo-ordenacao {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .campo-pesquisa input,
+  .campo-filtro select,
+  .campo-ordenacao select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+  }
+
+  /* Ordenação */
+
+  .ordenacao-cursos {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .campo-ordenacao {
+    flex-wrap: wrap;
+  }
+
+  .limpar-filtros {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  /* Modal */
+
+  .modal-overlay {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 24px);
+    padding: 24px;
+    border-radius: 12px;
+  }
+
+  .modal-content h2 {
+    font-size: 26px;
+  }
+
+  .modal-content h3 {
+    font-size: 21px;
+  }
+
+  .modal-cabecalho {
+    padding: 24px 20px 16px;
+  }
+
+  .modal-cabecalho h2 {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    line-height: 1.3;
+  }
+
+  .modal-conteudo {
+    padding: 20px;
+  }
+
+  .modal-informacoes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .modal-secao h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  .modal-lista-modulos {
+    padding-left: 0;
+  }
+
+  .modal-lista-modulos li {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .modal-lista-modulos li::before {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+
+  .modal-botao {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .modal-fechar {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Área do aluno */
+
+  .area-aluno-secao {
+    padding: 48px 0;
+  }
+
+  .area-aluno-container {
+    gap: 28px;
+  }
+
+  .area-aluno-apresentacao h2 {
+    font-size: 2rem;
+  }
+
+  .area-aluno-apresentacao p {
+    font-size: 1rem;
+  }
+
+  .area-aluno-card {
+    padding: 28px 22px;
+    border-radius: 14px;
+  }
+
+  .area-aluno-card h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* =========================================================
+   36. RESPONSIVIDADE - CELULARES ATÉ 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .header-content {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .header .logo {
+    font-size: 1.15rem;
+  }
+
+  .hero {
+    min-height: 420px;
+    padding: 56px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 7vw, 2.2rem);
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .hero .hero-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* =========================================================
+   37. RESPONSIVIDADE - TELAS ATÉ 360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .curso-card-conteudo {
+    padding: 20px;
+  }
+
+  .curso-metadados {
+    gap: 10px;
+  }
+
+  .modal-overlay {
+    padding: 8px;
+  }
+
+  .modal-content {
+    max-height: calc(100dvh - 16px);
+  }
+
+  .modal-cabecalho {
+    padding: 20px 16px 12px;
+  }
+
+  .modal-conteudo {
+    padding: 16px;
+  }
+}
+
+/* =========================================================
+   38. RESPONSIVIDADE - TELAS BAIXAS
+   ========================================================= */
+
+@media (max-height: 500px) {
+  .modal-overlay {
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    max-height: calc(100dvh - 24px);
+  }
+}
+
+/* =========================================================
+   39. ACESSIBILIDADE - MOVIMENTO REDUZIDO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Cards */
+
+  .curso-card,
+  .curso-card img,
+  .curso-card button,
+  .curso-card .curso-botao {
+    transition: none;
+    animation: none;
+  }
+
+  .curso-card:hover,
+  .curso-card:hover img,
+  .curso-card button:hover,
+  .curso-card .curso-botao:hover {
+    transform: none;
+  }
+
+  /* Modal */
+
+  .modal-overlay.modal-entrando,
+  .modal-overlay.modal-saindo,
+  .modal-entrando .modal-content,
+  .modal-saindo .modal-content {
+    animation: none;
+  }
+
+  .modal-fechar,
+  .modal-botao {
+    transition: none;
+  }
+
+  .modal-fechar:hover,
+  .modal-botao:hover {
+    transform: none;
+  }
+
+  /* Menu */
+
+  .menu-toggle span,
+  .header .nav-principal {
+    transition: none;
+  }
+
+  /* Área do aluno */
+
+  .area-aluno-entrar,
+  .area-aluno-entrar span,
+  .area-aluno-campo input {
+    transition: none;
+  }
+
+  .area-aluno-entrar:hover,
+  .area-aluno-entrar:hover span {
+    transform: none;
+  }
+
+  /* Filtros */
+
+  .limpar-filtros {
+    transition: none;
+  }
+}
