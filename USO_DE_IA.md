@@ -162,3 +162,74 @@ Seu uso contribuiu para organizar o trabalho, explorar soluções, compreender p
 O resultado foi verificado por meio da execução local, de testes funcionais e da validação da aplicação publicada.
 
 A experiência também contribuiu para o aprendizado prático sobre integração entre Front-End e Back-End, consumo de APIs REST, versionamento de código e implantação de aplicações web.
+
+## 9. Prompts relevantes e aproveitamento das sugestões
+
+Durante o desenvolvimento, foram realizadas solicitações à ferramenta ChatGPT para apoiar a implementação e o aperfeiçoamento da aplicação.
+
+Os exemplos abaixo representam as solicitações realizadas, podendo não corresponder à redação literal das mensagens originais.
+
+| Solicitação à IA | Conteúdo aproveitado | Conteúdo descartado ou adaptado |
+|---|---|---|
+| Como integrar um Front-End React e TypeScript a uma API ASP.NET Core? | Orientações para organizar a comunicação HTTP utilizando Axios. | Endereços e configurações genéricas foram adaptados às portas e aos ambientes utilizados no projeto. |
+| Como implementar pesquisa e filtros combinados no catálogo de cursos? | Sugestões para aplicar filtros por nome, categoria, modalidade e status. | A implementação foi ajustada ao modelo de dados e aos componentes existentes. |
+| Como apresentar detalhes dos cursos em um modal acessível? | Orientações sobre exibição de informações, navegação por teclado e fechamento com Escape. | Os exemplos foram adaptados à estrutura e ao estilo visual da aplicação. |
+| Como tratar falhas de comunicação com a API? | Estratégias para apresentar mensagens de erro, estados de carregamento e opção de tentar novamente. | As sugestões foram adequadas ao comportamento esperado da interface. |
+| Como publicar uma API .NET e um Front-End React em serviços gratuitos? | Orientações para utilização do Render, Cloudflare Pages e variáveis de ambiente. | Configurações locais foram diferenciadas das configurações necessárias para produção. |
+| Como documentar o desenvolvimento de uma aplicação Full Stack? | Organização dos arquivos README.md e USO_DE_IA.md. | As descrições foram revisadas para refletir as tecnologias, funcionalidades e testes efetivamente realizados. |
+
+## 10. Exemplo de inadequação identificada e correção realizada
+
+### 10.1 Problema identificado
+
+Durante a preparação da aplicação para publicação, foi necessário revisar a configuração de comunicação entre o Front-End e o Back-End.
+
+No ambiente local, a API utilizava um endereço HTTP associado à máquina de desenvolvimento e à porta 5035. Essa configuração não era adequada para o Front-End publicado na internet, pois os usuários externos não teriam acesso ao servidor local.
+
+### 10.2 Análise com apoio da IA
+
+A ferramenta ChatGPT foi utilizada para auxiliar na identificação da diferença entre os ambientes local e de produção.
+
+Foi discutida a necessidade de utilizar o endereço público da API hospedada no Render e de configurar a comunicação do Front-End publicado no Cloudflare Pages.
+
+### 10.3 Correção realizada
+
+A configuração de comunicação foi adaptada para considerar a variável de ambiente `VITE_API_URL`, permitindo informar o endereço público da API durante a construção da aplicação.
+
+Também foram revisadas as configurações necessárias para permitir a comunicação entre os serviços publicados.
+
+### 10.4 Validação
+
+Após os ajustes, foram realizadas verificações práticas:
+
+- Compilação do Back-End com `dotnet build`.
+- Compilação do Front-End com `npm run build`.
+- Consulta aos cursos pela API publicada no Render.
+- Acesso à aplicação publicada no Cloudflare Pages.
+- Verificação da listagem dos seis cursos.
+- Aplicação de filtros combinados.
+- Abertura do modal com as informações detalhadas de um curso.
+
+Os testes confirmaram o funcionamento da integração na versão publicada.
+
+## 11. Critérios para aceitação das sugestões
+
+As respostas fornecidas pela inteligência artificial não foram consideradas automaticamente corretas.
+
+As sugestões foram avaliadas considerando:
+
+- Compatibilidade com as tecnologias e versões utilizadas.
+- Preservação das funcionalidades existentes.
+- Adequação aos requisitos do desafio técnico.
+- Resultado das compilações e dos testes.
+- Funcionamento em ambiente local e publicado.
+
+Quando necessário, as orientações foram adaptadas à estrutura real da aplicação.
+
+## 12. Responsabilidade pelo desenvolvimento
+
+A inteligência artificial foi utilizada como recurso de apoio durante o processo de desenvolvimento.
+
+As implementações foram incorporadas progressivamente ao projeto e verificadas por meio de testes funcionais.
+
+O uso da ferramenta está registrado neste documento para oferecer transparência sobre sua participação no desenvolvimento da solução.
